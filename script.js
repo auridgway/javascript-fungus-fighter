@@ -3,23 +3,23 @@
 // Example:
 const spells = [{
     name: 'arcane-scepter',
-    Cost: 12,
-    Damage: 14
+    cost: 12,
+    damage: 14
 },
 {
     name: 'entangle',
-    Cost: 23,
-    Damage: 9
+    cost: 23,
+    damage: 9
 },
 {
-    name: 'dragon blade',
-    Cost: 38,
-    Damage: 47
+    name: 'dragon-blade',
+    cost: 38,
+    damage: 47
 },
 {
     name: 'star-fire',
-    Cost: 33,
-    Damage: 25
+    cost: 33,
+    damage: 25
 }];
 
 let fungusHP = 100;
@@ -38,20 +38,58 @@ function onReady() {
     // - Rendered to the DOM
 }
 
-function spellCast(spellName) {
+function spellCast(event, spellName) {
     // update variables from attack - they cant fall below zero
+    const spellButtons = [document.getElementById('arcaneBtn'), document.getElementById('entangleBtn'), document.getElementById('dragon-bladeBtn'), document.getElementById('star-fireBtn')];
 
+    switch (spellName) {
+        case spells[0].name:
+            yourAP -= spells[0].cost;
+            fungusHP -= spells[0].damage;
+            break;
+        case spells[1].name:
+            yourAP -= spells[1].cost;
+            fungusHP -= spells[1].damage;
+            break;
+        case spells[2].name:
+            yourAP -= spells[2].cost;
+            fungusHP -= spells[2].damage;
+            break;
+        case spells[3].name:
+            yourAP -= spells[3].cost;
+            fungusHP -= spells[3].damage;
+            break;
 
+    }
+    // render dom
+    renderDom();
+    // if ap = 0 then disable all abilities
+    if (yourAP <= 0) {
+        for (const button of spellButtons) {
+            button.disabled = true;
+        }
+    }
 }
 
 function renderDom() {
     // update hp and ap
+    if (fungusHP < 0) {
+        fungusHP = 0;
+    }
+    if (yourAP < 0) {
+        yourAP = 0;
+    }
+    document.querySelector("div.ap-text").textContent = yourAP.toString();
+    document.querySelector("div.hp-text").textContent = fungusHP.toString();
 
     // if his hp = 0 then you win and replace walk to dead class
-
     // if your ap = 0 then you lose and replace walk to jump class
-
-    // if ap = 0 then disable all abilities
+    if (fungusHP <= 0) {
+        document.querySelector('div.freaky-fungus').classList = "freaky-fungus dead";
+    }
+    else if (yourAP <= 0) {
+        document.querySelector('div.freaky-fungus').classList = "freaky-fungus jump";
+    }
 
 }
 

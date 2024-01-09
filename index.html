@@ -17,10 +17,10 @@
         <div class="attacks">
             <div class="ap-text">100 AP</div>
             <progress id="ap-meter" value="100" max="100"></progress>
-            <button onclick="spellCast('arcane-scepter')" class="attack-btn arcane-scepter"></button>
-            <button onclick="spellCast('entangle')" class="attack-btn entangle"></button>
-            <button onclick="spellCast('dragon-blade')" class="attack-btn dragon-blade"></button>
-            <button onclick="spellCast('star-fire')" class="attack-btn star-fire"></button>
+            <button id="arcaneBtn" onclick="spellCast(event, 'arcane-scepter')" class="attack-btn arcane-scepter"></button>
+            <button id="entangleBtn" onclick="spellCast(event, 'entangle')" class="attack-btn entangle"></button>
+            <button id="dragon-bladeBtn" onclick="spellCast(event, 'dragon-blade')" class="attack-btn dragon-blade"></button>
+            <button id="star-fireBtn" onclick="spellCast(event, 'star-fire')" class="attack-btn star-fire"></button>
         </div>
 
         <div class="enemy">
