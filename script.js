@@ -69,6 +69,7 @@ function spellCast(event, spellName) {
             button.disabled = true;
         }
     }
+
 }
 
 function renderDom() {
@@ -81,6 +82,8 @@ function renderDom() {
     }
     document.querySelector("div.ap-text").textContent = yourAP.toString();
     document.querySelector("div.hp-text").textContent = fungusHP.toString();
+    document.getElementById("ap-meter").value = yourAP;
+    document.getElementById("hp-meter").value = fungusHP;
 
     // if his hp = 0 then you win and replace walk to dead class
     // if your ap = 0 then you lose and replace walk to jump class
@@ -92,6 +95,5 @@ function renderDom() {
     }
 
 }
-
 
 onReady()
